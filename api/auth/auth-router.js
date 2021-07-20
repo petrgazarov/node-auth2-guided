@@ -29,10 +29,11 @@ router.post('/login', checkAuthPayload, (req, res, next) => {
     .then(([user]) => {
       if (user && bcrypt.compareSync(password, user.password)) {
         // generate a token and send it back
-        const token = tokenBuilder()
+        const token = tokenBuilder(user)
         // the client will provide token in future requests
         res.status(200).json({
           message: `Welcome back ${user.username}!`,
+          token,
         });
       } else {
         next({ status: 401, message: 'Invalid Credentials' });
