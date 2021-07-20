@@ -5,6 +5,12 @@ const restricted = require("../auth/restricted-middleware.js");
 
 function onlyAdmin(req, res, next) {
   const { decodedJwt } = req
+  if (decodedJwt.role === 'admin') {
+    next()
+  } else {
+    next({ status: 403, })
+  }
+
 }
 
 router.get("/", restricted, onlyAdmin, (req, res, next) => {
