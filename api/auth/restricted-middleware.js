@@ -11,6 +11,7 @@ module.exports = (req, res, next) => {
     if (err) {
       return next({ status: 401, message: `your token sucks: ${err.message}`})
     }
-    req.decoded
+    req.decodedJwt = decodedToken
+    next()
   })
 };
