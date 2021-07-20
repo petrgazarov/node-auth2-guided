@@ -1,7 +1,7 @@
 const bcrypt = require('bcryptjs');
 
 const router = require('express').Router();
-
+const tokenBuilder = require('./token-builder')
 const Users = require('../users/users-model.js');
 const checkAuthPayload = require('./check-payload-middleware');
 
