@@ -3,6 +3,8 @@ const router = require("express").Router();
 const Users = require("./users-model.js");
 const restricted = require("../auth/restricted-middleware.js");
 
+// authentication (who you are)
+// authorization (what you have rights to access)
 function onlyAdmin(req, res, next) {
   const { decodedJwt } = req
   if (decodedJwt.role === 'admin') {
