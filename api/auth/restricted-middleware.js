@@ -7,4 +7,5 @@ module.exports = (req, res, next) => {
   if (!token) {
     return next({ status: 401, message: 'you serious? No token??' })
   }
+  jwt.verify
 };
