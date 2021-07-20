@@ -8,9 +8,8 @@ function onlyAdmin(req, res, next) {
   if (decodedJwt.role === 'admin') {
     next()
   } else {
-    next({ status: 403, })
+    next({ status: 403, message: 'you cannot touch this!' })
   }
-
 }
 
 router.get("/", restricted, onlyAdmin, (req, res, next) => {
