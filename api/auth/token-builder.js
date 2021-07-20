@@ -8,6 +8,7 @@ module.exports = function (user) {
     role: user.role,
   }
   const options = {
-    
+    expiresIn: '1d'
   }
+  return jwt.sign()
 }
