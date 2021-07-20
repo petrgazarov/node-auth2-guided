@@ -9,7 +9,8 @@ module.exports = (req, res, next) => {
   }
   jwt.verify(token, jwtSecret, (err, decodedToken) => {
     if (err) {
-      return next({ status: 401, message: `your token sucks: ${}`})
+      return next({ status: 401, message: `your token sucks: ${err.message}`})
     }
+    req.decoded
   })
 };
