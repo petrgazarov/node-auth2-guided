@@ -4,9 +4,6 @@ const Users = require("./users-model.js");
 const restricted = require("../auth/restricted-middleware.js");
 
 const onlyAdmin = (req, res, next) => {
-  // 1. Read token data from decoded JWT
-  // 2. Check if role is admin. If it is, proceed. If it is not, then terminate the request with a 403.
-
   const { decodedToken } = req;
 
   if (decodedToken.role !== 'admin') {
