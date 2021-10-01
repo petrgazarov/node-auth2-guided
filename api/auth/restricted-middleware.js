@@ -2,10 +2,6 @@ const jwt = require('jsonwebtoken');
 const { JWT_TOKEN } = require('../config/secrets');
 
 module.exports = (req, res, next) => {
-  // Check the token exists
-  // Verify the token
-  // Handle errors
-
   const token = req.headers.authorization;
 
   if (!token) {
