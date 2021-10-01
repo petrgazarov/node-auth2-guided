@@ -4,12 +4,12 @@ const router = require('express').Router();
 
 const Users = require('../users/users-model.js');
 
-const tokenBuilder = require('./token-builder');
+const tokenBuilder = require('./token-builder.js');
 
 router.post('/register', (req, res, next) => {
   let user = req.body;
 
-  // bcrypting the password before saving
+  // bcrypt-ing the password before saving
   const rounds = process.env.BCRYPT_ROUNDS || 8; // 2 ^ 8
   const hash = bcrypt.hashSync(user.password, rounds);
 

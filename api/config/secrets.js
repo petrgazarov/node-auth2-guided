@@ -1,3 +1,3 @@
 module.exports = {
-  JWT_TOKEN: process.env.JWT_TOKEN || 'fallback secret!',
+  JWT_SECRET: process.env.JWT_SECRET || 'fallback secret!',
 };
