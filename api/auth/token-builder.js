@@ -1,5 +1,7 @@
 const jwt = require('jsonwebtoken');
 
+const { JWT_TOKEN } = require('../config/secrets');
+
 const buildToken = (user) => {
   const payload = {
     sub: user.id,
@@ -7,13 +9,11 @@ const buildToken = (user) => {
     role: user.role,
   }
 
-  const secret = process.env.JWT_TOKEN || 'fallback secret!';
-
   const options = {
     expiresIn: '1d'
   };
 
-  return jwt.sign(payload, secret, options);
+  return jwt.sign(payload, JWT_TOKEN, options);
 };
 
 module.exports = buildToken;
