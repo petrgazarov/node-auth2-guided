@@ -1,25 +1,10 @@
 const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
 
 const router = require('express').Router();
 
 const Users = require('../users/users-model.js');
 
-const buildToken = (user) => {
-  const payload = {
-    sub: user.id,
-    username: user.username,
-    role: user.role,
-  }
-
-  const secret = 'secret';
-
-  const options = {
-    expiresIn: '1d' }
-  ;
-
-  return jwt.sign(payload, secret, options);
-};
+const tokenBuilder = require('./token-builder');
 
 router.post('/register', (req, res, next) => {
   let user = req.body;
@@ -44,7 +29,7 @@ router.post('/login', (req, res, next) => {
   Users.findBy({ username }) // it would be nice to have middleware do this
     .then(([user]) => {
       if (user && bcrypt.compareSync(password, user.password)) {
-        const token = buildToken(user);
+        const token = tokenBuilder(user);
 
         res.status(200).json({
           message: `Welcome back ${user.username}!`,
