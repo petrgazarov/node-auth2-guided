@@ -7,12 +7,16 @@ const Users = require('../users/users-model.js');
 
 const buildToken = (user) => {
   const payload = {
-    id: user.id
+    sub: user.id,
+    username: user.username,
+    role: user.role,
   }
 
   const secret = 'secret';
 
-  const options = { expiresIn: '1d' };
+  const options = {
+    expiresIn: '1d' }
+  ;
 
   return jwt.sign(payload, secret, options);
 };
