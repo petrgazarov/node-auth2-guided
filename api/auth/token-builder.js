@@ -7,11 +7,11 @@ const buildToken = (user) => {
     role: user.role,
   }
 
-  const secret = 'secret';
+  const secret = process.env.JWT_TOKEN || 'fallback secret!';
 
   const options = {
-    expiresIn: '1d' }
-  ;
+    expiresIn: '1d'
+  };
 
   return jwt.sign(payload, secret, options);
 };
